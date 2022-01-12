@@ -1,0 +1,52 @@
+version: "3"
+
+networks:
+  mynetwork:
+
+services:
+  web:
+    image: nginx:latest
+    restart: always
+    networks:
+      mynetwork:
+        aliases:
+          - test.loc
+    volumes:
+      - ./nginx/conf/test.conf:/etc/nginx/conf.d/test.conf
+      - ../../app/:/var/www/html/app/
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - "php"
+
+  php:
+    build: ./php
+    user: "1000:1000"
+    restart: always
+    networks:
+      mynetwork:
+    volumes:
+      - ../../app/:/var/www/html/app/
+    links:
+      - "mysqldb:mysql"
+      - "chrome"
+
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/lib:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
+  chrome:
+    image: selenium/standalone-chrome
+    networks:
+      mynetwork:

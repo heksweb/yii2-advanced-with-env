@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  web:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx/conf/app.conf:/etc/nginx/conf.d/app.conf
+      - ../../app/:/var/www/html/app/
+      - ./certificates/:/var/www/certificates/
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - "php"
+
+  php:
+    build: ./php
+    user: "1000:1000"
+    restart: always
+    working_dir: /var/www/html/app
+    volumes:
+      - ../../app/:/var/www/html/app/
+    links:
+      - "mysqldb:mysql"
+
+  mysqldb:
+    image: mysql:8.0.27
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/lib:/var/lib/mysql
+      - ./dumps/:/var/dumps/
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
