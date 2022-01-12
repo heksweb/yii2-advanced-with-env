@@ -29,6 +29,15 @@ phpunit.phar
 # vagrant runtime
 /.vagrant
 
+# yii console commands
+/yii
+/yii_test
+/yii_test.bat
+
 # ignore generated files
+/site/web/index.php
+/site/web/index-test.php
 /site/web/robots.txt
+/admin/web/index.php
+/admin/web/index-test.php
 /admin/web/robots.txt

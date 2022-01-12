@@ -1,8 +1,9 @@
 version: "3"
 
 services:
-  web:
+  nignx:
     image: nginx:latest
+    container_name: my_project_nignx
     restart: always
     volumes:
       - ./nginx/conf/app.conf:/etc/nginx/conf.d/app.conf
@@ -16,6 +17,7 @@ services:
 
   php:
     build: ./php
+    container_name: my_project_php
     user: "1000:1000"
     restart: always
     working_dir: /var/www/html/app
@@ -26,7 +28,7 @@ services:
 
   mysqldb:
     image: mysql:8.0.27
-    container_name: mysqldb
+    container_name: my_project_mysql
     ports:
       - "3306:3306"
     volumes:

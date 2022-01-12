@@ -42,8 +42,8 @@ return [
             'yii_test',
         ],
         'setCookieValidationKey' => [
-            '.env/COOKIE_KEY_ADMIN',
-            '.env/COOKIE_KEY_SITE'
+            'COOKIE_KEY_ADMIN',
+            'COOKIE_KEY_SITE',
         ],
     ],
     'Production' => [
@@ -58,8 +58,8 @@ return [
             'yii',
         ],
         'setCookieValidationKey' => [
-            '.env/COOKIE_KEY_ADMIN',
-            '.env/COOKIE_KEY_SITE',
+            'COOKIE_KEY_ADMIN',
+            'COOKIE_KEY_SITE',
         ],
     ],
 ];

@@ -68,4 +68,7 @@ DEPLOY DEV ENVIRONMENT
    2. `mkcert site.api.loc`
 2. `cd .. && cp .env.example .env` and change params in .env file for environment, if you need in this action
 3. `cd ../../app && cp .env.example .env` and change params in .env file for app, if you need in this action
-4. 
+4. `cd ../env/dev && docker-compose build --no-cache && docker-compose up -d`
+5. `docker exec -it my_project_php ./init`
+6. `docker exec -it my_project_php composer install`
+7. `docker exec -it my_project_php ./yii migrate`
