@@ -43,8 +43,7 @@ return [
         ],
         'setCookieValidationKey' => [
             '.env/COOKIE_KEY_ADMIN',
-            '.env/COOKIE_KEY_SITE',
-            '.env/COOKIE_KEY_TEST',
+            '.env/COOKIE_KEY_SITE'
         ],
     ],
     'Production' => [

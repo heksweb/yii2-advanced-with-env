@@ -59,3 +59,13 @@ env
     prod
     test
 ```
+
+DEPLOY DEV ENVIRONMENT
+---------------------------
+
+1. `cd env/dev/certificates` and Generate certificates "admin.api.loc" and "site.api.loc" using `mkcert`
+   1. `mkcert admin.api.loc`
+   2. `mkcert site.api.loc`
+2. `cd .. && cp .env.example .env` and change params in .env file for environment, if you need in this action
+3. `cd ../../app && cp .env.example .env` and change params in .env file for app, if you need in this action
+4. 
