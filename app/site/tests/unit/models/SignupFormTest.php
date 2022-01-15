@@ -2,13 +2,16 @@
 
 namespace site\tests\unit\models;
 
-use common\fixtures\UserFixture;
-use site\models\SignupForm;
+use Codeception\Test\Unit;
+use site\models\User;
+use site\tests\UnitTester;
+use site\fixtures\UserFixture;
+use site\forms\SignupForm;
 
-class SignupFormTest extends \Codeception\Test\Unit
+class SignupFormTest extends Unit
 {
     /**
-     * @var \site\tests\UnitTester
+     * @var UnitTester
      */
     protected $tester;
 
@@ -17,7 +20,7 @@ class SignupFormTest extends \Codeception\Test\Unit
     {
         $this->tester->haveFixtures([
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'user.php'
             ]
         ]);
@@ -34,11 +37,11 @@ class SignupFormTest extends \Codeception\Test\Unit
         $user = $model->signup();
         expect($user)->true();
 
-        /** @var \common\models\User $user */
-        $user = $this->tester->grabRecord('common\models\User', [
+        /** @var User $user */
+        $user = $this->tester->grabRecord('site\models\User', [
             'username' => 'some_username',
             'email' => 'some_email@example.com',
-            'status' => \common\models\User::STATUS_INACTIVE
+            'status' => User::STATUS_INACTIVE
         ]);
 
         $this->tester->seeEmailIsSent();

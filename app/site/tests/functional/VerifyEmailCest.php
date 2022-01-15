@@ -2,8 +2,9 @@
 
 namespace site\tests\functional;
 
-use common\fixtures\UserFixture;
 use site\tests\FunctionalTester;
+use site\fixtures\UserFixture;
+use site\models\User;
 
 class VerifyEmailCest
 {
@@ -18,7 +19,7 @@ class VerifyEmailCest
     {
         return [
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'user.php',
             ],
         ];
@@ -59,10 +60,10 @@ class VerifyEmailCest
         $I->canSee('Congratulations!', 'h1');
         $I->see('Logout (test.test)', 'form button[type=submit]');
 
-        $I->seeRecord('common\models\User', [
+        $I->seeRecord('site\models\User', [
            'username' => 'test.test',
            'email' => 'test@mail.com',
-           'status' => \common\models\User::STATUS_ACTIVE
+           'status' => User::STATUS_ACTIVE
         ]);
     }
 }

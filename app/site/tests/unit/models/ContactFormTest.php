@@ -2,10 +2,11 @@
 
 namespace site\tests\unit\models;
 
-use site\models\ContactForm;
+use Codeception\Test\Unit;
+use site\forms\ContactForm;
 use yii\mail\MessageInterface;
 
-class ContactFormTest extends \Codeception\Test\Unit
+class ContactFormTest extends Unit
 {
     public function testSendEmail()
     {

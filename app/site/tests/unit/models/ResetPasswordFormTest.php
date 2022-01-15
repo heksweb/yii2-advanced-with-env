@@ -2,13 +2,15 @@
 
 namespace site\tests\unit\models;
 
-use common\fixtures\UserFixture;
-use site\models\ResetPasswordForm;
+use Codeception\Test\Unit;
+use site\tests\UnitTester;
+use site\fixtures\UserFixture;
+use site\forms\ResetPasswordForm;
 
-class ResetPasswordFormTest extends \Codeception\Test\Unit
+class ResetPasswordFormTest extends Unit
 {
     /**
-     * @var \site\tests\UnitTester
+     * @var UnitTester
      */
     protected $tester;
 
@@ -17,7 +19,7 @@ class ResetPasswordFormTest extends \Codeception\Test\Unit
     {
         $this->tester->haveFixtures([
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'user.php'
             ],
         ]);

@@ -2,13 +2,16 @@
 
 namespace site\tests\unit\models;
 
-use common\fixtures\UserFixture;
-use site\models\VerifyEmailForm;
+use Codeception\Test\Unit;
+use site\fixtures\UserFixture;
+use site\forms\VerifyEmailForm;
+use site\models\User;
+use site\tests\UnitTester;
 
-class VerifyEmailFormTest extends \Codeception\Test\Unit
+class VerifyEmailFormTest extends Unit
 {
     /**
-     * @var \site\tests\UnitTester
+     * @var UnitTester
      */
     protected $tester;
 
@@ -17,7 +20,7 @@ class VerifyEmailFormTest extends \Codeception\Test\Unit
     {
         $this->tester->haveFixtures([
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'user.php'
             ]
         ]);
@@ -45,11 +48,11 @@ class VerifyEmailFormTest extends \Codeception\Test\Unit
     {
         $model = new VerifyEmailForm('4ch0qbfhvWwkcuWqjN8SWRq72SOw1KYT_1548675330');
         $user = $model->verifyEmail();
-        expect($user)->isInstanceOf('common\models\User');
+        expect($user)->isInstanceOf('site\models\User');
 
         expect($user->username)->equals('test.test');
         expect($user->email)->equals('test@mail.com');
-        expect($user->status)->equals(\common\models\User::STATUS_ACTIVE);
+        expect($user->status)->equals(User::STATUS_ACTIVE);
         expect($user->validatePassword('Test1234'))->true();
     }
 }

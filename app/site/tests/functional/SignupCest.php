@@ -2,6 +2,7 @@
 
 namespace site\tests\functional;
 
+use site\models\User;
 use site\tests\FunctionalTester;
 
 class SignupCest
@@ -50,7 +51,7 @@ class SignupCest
         $I->seeRecord('common\models\User', [
             'username' => 'tester',
             'email' => 'tester.email@example.com',
-            'status' => \common\models\User::STATUS_INACTIVE
+            'status' => User::STATUS_INACTIVE
         ]);
 
         $I->seeEmailIsSent();

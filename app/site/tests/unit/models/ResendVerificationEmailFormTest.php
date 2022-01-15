@@ -4,8 +4,8 @@ namespace site\tests\unit\models;
 
 
 use Codeception\Test\Unit;
-use common\fixtures\UserFixture;
-use site\models\ResendVerificationEmailForm;
+use site\fixtures\UserFixture;
+use site\forms\ResendVerificationEmailForm;
 
 class ResendVerificationEmailFormTest extends Unit
 {
@@ -19,7 +19,7 @@ class ResendVerificationEmailFormTest extends Unit
     {
         $this->tester->haveFixtures([
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'user.php'
             ]
         ]);
