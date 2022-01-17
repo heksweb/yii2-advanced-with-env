@@ -1,0 +1,13 @@
+suite_namespace: site\tests\acceptance
+actor: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver:
+              url: 'http://site.api.loc/' # it's the name of the nginx container from your docker-compose
+              host: 'chrome'  # it's the name of the selenium-chrome container from your docker-compose
+              port: 4444 # default port
+              browser: chrome # 'chrome' or 'firefox'
+        - Yii2:
+              part: orm
+              entryScript: index-test.php
+              cleanup: false

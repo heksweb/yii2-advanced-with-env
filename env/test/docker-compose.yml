@@ -4,13 +4,15 @@ networks:
   mynetwork:
 
 services:
-  web:
+  nignx:
     image: nginx:latest
-    restart: always
     networks:
       mynetwork:
         aliases:
-          - test.loc
+          - site.api.loc
+          - admin.api.loc
+    container_name: my_project_nignx
+    restart: always
     volumes:
       - ./nginx/conf/test.conf:/etc/nginx/conf.d/test.conf
       - ../../app/:/var/www/html/app/
@@ -22,10 +24,12 @@ services:
 
   php:
     build: ./php
-    user: "1000:1000"
-    restart: always
+    container_name: my_project_php
     networks:
       mynetwork:
+    user: "1000:1000"
+    restart: always
+    working_dir: /var/www/html/app
     volumes:
       - ../../app/:/var/www/html/app/
     links:
@@ -33,12 +37,15 @@ services:
       - "chrome"
 
   mysqldb:
-    image: mysql:5.7
-    container_name: mysqldb
+    image: mysql:8.0.27
+    container_name: my_project_mysql
+    networks:
+      mynetwork:
     ports:
       - "3306:3306"
     volumes:
       - ./mysql/lib:/var/lib/mysql
+      - ./dumps/:/var/dumps/
     restart: always
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
