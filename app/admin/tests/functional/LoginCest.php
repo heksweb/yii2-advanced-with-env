@@ -1,9 +1,9 @@
 <?php
 
-namespace backend\tests\functional;
+namespace admin\tests\functional;
 
-use backend\tests\FunctionalTester;
-use common\fixtures\UserFixture;
+use admin\tests\FunctionalTester;
+use common\fixtures\AdminFixture;
 
 /**
  * Class LoginCest
@@ -21,7 +21,7 @@ class LoginCest
     {
         return [
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => AdminFixture::class,
                 'dataFile' => codecept_data_dir() . 'login_data.php'
             ]
         ];

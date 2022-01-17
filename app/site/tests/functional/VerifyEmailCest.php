@@ -3,7 +3,7 @@
 namespace site\tests\functional;
 
 use site\tests\FunctionalTester;
-use site\fixtures\UserFixture;
+use common\fixtures\UserFixture;
 use site\models\User;
 
 class VerifyEmailCest

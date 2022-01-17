@@ -4,13 +4,14 @@ namespace site\tests\unit\models;
 
 
 use Codeception\Test\Unit;
-use site\fixtures\UserFixture;
+use common\fixtures\UserFixture;
 use site\forms\ResendVerificationEmailForm;
+use site\tests\UnitTester;
 
 class ResendVerificationEmailFormTest extends Unit
 {
     /**
-     * @var \site\tests\UnitTester
+     * @var UnitTester
      */
     protected $tester;
 

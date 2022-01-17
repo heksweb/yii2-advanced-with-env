@@ -3,7 +3,7 @@
 namespace site\tests\unit\models;
 
 use Codeception\Test\Unit;
-use site\fixtures\UserFixture;
+use common\fixtures\UserFixture;
 use site\forms\VerifyEmailForm;
 use site\models\User;
 use site\tests\UnitTester;

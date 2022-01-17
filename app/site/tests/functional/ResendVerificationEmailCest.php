@@ -2,7 +2,7 @@
 
 namespace site\tests\functional;
 
-use site\fixtures\UserFixture;
+use common\fixtures\UserFixture;
 use site\models\User;
 use site\tests\FunctionalTester;
 

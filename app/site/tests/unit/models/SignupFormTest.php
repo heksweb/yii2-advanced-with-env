@@ -5,7 +5,7 @@ namespace site\tests\unit\models;
 use Codeception\Test\Unit;
 use site\models\User;
 use site\tests\UnitTester;
-use site\fixtures\UserFixture;
+use common\fixtures\UserFixture;
 use site\forms\SignupForm;
 
 class SignupFormTest extends Unit
